@@ -8,8 +8,29 @@ debugger; // step through loading & testing
     https://www.w3schools.com/jsref/jsref_charCodeAt.asp
   to sort strings you rearrange the characters in charCode order
 */
-function sortCharacters(str) {
+function getCharactersUnicodeValue(str) {
+  //Empty object
+  const list = [];
 
+  for (const c of str) {
+    const unicodeChart = {};
+    unicodeChart.key = c;
+    unicodeChart.value = str.charCodeAt(str.indexOf(c));
+    list.push(unicodeChart);
+  }
+  return list;
+}
+function sortCharacters(str) {
+  let mapUni = getCharactersUnicodeValue(str);
+  var byValue = mapUni.slice(0);
+  byValue.sort(function (a, b) {
+    return a.value - b.value;
+  });
+  let finalRes = '';
+  for (item of byValue) {
+    finalRes += item.key;
+  }
+  return finalRes;
 }
 
 // declare and evaluate test cases for sortCharacters
@@ -38,12 +59,12 @@ function sortCharactersHandler() {
 
   // read & process user input
 
-
+  const userText = prompt('enter some text');
   // execute core logic
-
+  const result = sortCharacters(userText);
 
   // display result to user
-
+  alert(result);
 
   // log action for developer
   console.log('\n-- sortCharacters --');
