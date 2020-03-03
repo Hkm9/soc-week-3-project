@@ -6,6 +6,12 @@ debugger; // step through loading & testing
   reverse the characters in each word, but leave the sentence in order
 */
 function reverseWords(str) {
+  // str = str.split("").reverse().join("");
+  str = str.split(" ");
+  let finalRes = '';
+  for (item of str)
+    finalRes += item.split("").reverse().join("") + " ";
+  return finalRes.trim();
 
 }
 
@@ -33,13 +39,13 @@ function reverseWordsHandler() {
   debugger; // step through user actions
 
   // read & process user input
-
+  const userText = prompt('enter some text');
 
   // execute core logic
-
+  const result = reverseWords(userText);
 
   // display result to user
-
+  alert(result);
 
   // log action for developer
   console.log('\n-- reverseWords --');
