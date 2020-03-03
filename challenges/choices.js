@@ -5,6 +5,21 @@ debugger; // step through loading & testing
 // second argument is what to do to that string
 function choices(str, option) {
 
+  if (str === '') {
+    return 'invalid option';
+  }
+  else if (!['slim', 'big', 'small'].includes(option)) {
+    return 'invalid option';
+  }
+  else if (option === 'big') {
+    return str.toUpperCase();
+  }
+  else if (option === 'small') {
+    return str.toLowerCase();
+  }
+  else if (option === 'slim') {
+    return str.trim();
+  }
 }
 
 // declare and evaluate test cases for choices
@@ -39,11 +54,12 @@ function choicesHandler() {
   debugger; // step through user actions
 
   // read & process user input
-
+  const userText = prompt('enter some text');
+  const option = prompt('enter action big or small or slim ?');
   // execute core logic
-
+  const result = choices(userText, option.trim());
   // display result to user
-
+  alert(result);
   // log action for developer
   console.log('\n-- choices --');
   // user inputs
